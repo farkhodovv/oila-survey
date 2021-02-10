@@ -9,12 +9,20 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@bachdgvn/vue-otp-input": "^1.0.8",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.0",
     "nuxt": "^2.14.12",
-    "v-mask": "^2.2.4"
+    "nuxt-i18n": "^6.15.4",
+    "v-mask": "^2.2.4",
+    "vue-pincode-input": "^0.4.0",
+    "vuelidate": "^0.7.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.3"
+  }
 }

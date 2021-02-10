@@ -1,0 +1,183 @@
+@media (max-width: 1199px) {
+  .header {
+    .top nav .main-menu li + li + li + li + li + li {
+      display: none;
+    }
+
+    .bottom {
+      nav {
+        display: none;
+      }
+
+      .bottom-inner {
+        justify-content: flex-end !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .header .top nav .main-menu li + li + li + li {
+    display: none;
+  }
+
+  .header .bottom .right .search-wrap .panel input {
+    width: 646px;
+  }
+
+  .header .bottom .right .btn-widget {
+    display: none;
+  }
+
+  .history .inner,
+  .avloni-in-numbers .text {
+    padding: 0;
+  }
+
+  .main-news {
+    .items-news {
+      display: none;
+    }
+
+    .blocks {
+      .item:after {
+        display: none;
+      }
+    }
+
+    .subscribe {
+      padding: 20px;
+    }
+  }
+
+  .main-news .text-ban .inner {
+    display: none;
+  }
+
+  .main-news .vertical-news {
+    padding: 20px 12px 0 12px;
+  }
+
+  .part-archive .tabs {
+    margin-bottom: 20px;
+  }
+
+  footer .top ul {
+    margin-bottom: 20px;
+  }
+
+  .header .full-panel .panel .menu .item{    width: 50%;}
+}
+
+@media (max-width: 767px) {
+  .header {
+    .top {
+      .logo {
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        justify-content: center;
+        background: #153567;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    .bottom {
+      .bottom-inner {
+        justify-content: space-between !important;
+        border: none;
+      }
+
+      .right .search-wrap .panel input {
+        width: 320px;
+      }
+    }
+  }
+
+  .answers .answers-wrap .head {
+    display: block;
+
+    .title {
+      min-width: 1px;
+    }
+
+    .search {
+      padding: 0;
+    }
+  }
+
+  footer .bottom {
+    p {
+      text-align: center;
+    }
+  }
+
+  .management .item.main {
+    .top {
+      flex-direction: column;
+
+      .img-wrap {
+        margin: 0 auto 20px;
+      }
+
+      .text {
+        padding-left: 0;
+
+        h6 {
+          text-align: center;
+        }
+
+        p {
+          text-align: center;
+        }
+      }
+
+      .bottom:before{display: none;}
+    }
+  }
+
+  .single-vacancies-head{
+    display: block;
+     span{
+       margin: 15px 20px 0 0;
+     }
+  }
+}
+
+@media (max-width: 575px) {
+  .header .top .logo {
+    padding: 8px 0;
+  }
+
+  .about-main .inner {
+    padding: 12px;
+  }
+
+  .management .item .bottom nav{
+    flex-direction: column;
+  }
+  .management .item.main .bottom{
+    flex-direction: column;
+  }
+
+  .management .item.main .bottom .mail{
+    margin-bottom: 16px;
+  }
+  .management .item .bottom .phone, .management .item .bottom .mail{margin-bottom: 16px;}
+
+  .management .item{
+    padding: 20px 12px 0 12px;
+  }
+
+  .header .full-panel .full-panel-head .logo {
+    display: block;
+    svg{
+      width: 80%;
+      height: auto;
+    }
+  }
+}
