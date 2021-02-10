@@ -12,7 +12,9 @@
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.3",
-    "nuxt": "^2.14.12"
+    "element-ui": "^2.15.0",
+    "nuxt": "^2.14.12",
+    "v-mask": "^2.2.4"
   },
   "devDependencies": {}
 }
