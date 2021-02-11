@@ -11,24 +11,24 @@
               bo‘lyapti ?</h5>
           </div>
           <div class="test__body">
-            <div class="d-flex align-items-center justify-content-center">
-              Juda foydali
-            </div>
-            <div class="d-flex align-items-center justify-content-center">
-              Foydasini sezmadim
-            </div>
-            <div class="d-flex align-items-center justify-content-center">
-              Ko‘proq qilinsa yaxshi bo‘lardi
-            </div>
-            <div class="d-flex align-items-center justify-content-center">
-              Umuman foydasiz
-            </div>
-            <div class="d-flex align-items-center justify-content-center">
-              Vaqtim ketgani qoldi
-            </div>
+            <el-radio class="w-100 ml-2 d-flex align-items-center justify-content-center" v-model="test" label="1"
+                      border>Juda foydali
+            </el-radio>
+            <el-radio class="w-100 d-flex align-items-center justify-content-center" v-model="test" label="2"
+                      border>Foydasini sezmadim
+            </el-radio>
+            <el-radio class="w-100 d-flex align-items-center justify-content-center" v-model="test" label="3"
+                      border>Ko‘proq qilinsa yaxshi bo‘lardi
+            </el-radio>
+            <el-radio class="w-100 d-flex align-items-center justify-content-center" v-model="test" label="4"
+                      border>Umuman foydasiz
+            </el-radio>
+            <el-radio class="w-100 d-flex align-items-center justify-content-center" v-model="test" label="5"
+                      border>Vaqtim ketgani qoldi
+            </el-radio>
           </div>
           <div class="test__footer d-flex justify-content-end mt-5">
-            <button class="align-items-center btn-blue">Keyingisi
+            <button class="align-items-center btn-blue" @click="testDone">Keyingisi
               <svg class="ml-2" width="20" height="20" viewBox="0 0 20 20" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -45,7 +45,17 @@
 
 <script>
 export default {
-  name: 'test'
+  name: 'test',
+  data() {
+    return {
+      test: null
+    }
+  },
+  methods: {
+    testDone() {
+      this.$emit('testDone', {test: this.test})
+    }
+  }
 }
 </script>
 <style scoped lang="scss">

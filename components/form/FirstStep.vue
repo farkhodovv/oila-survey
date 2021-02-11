@@ -80,11 +80,11 @@
           </div>
           <div class="form-group my-3">
             <label class="text-left label-title">To‘liq Familiya Ismingiz va Otangiz ismini kiriting</label>
-            <el-input placeholder="Familiya Ism Otangiz ismi" v-model="input"></el-input>
+            <el-input placeholder="Familiya Ism Otangiz ismi" v-model="name"></el-input>
           </div>
           <div class="form-group d-flex flex-column">
             <label>Hududingiz</label>
-            <el-select v-model="value" placeholder="Qoraqalpog’iston Respublikasi">
+            <el-select v-model="city" placeholder="Qoraqalpog’iston Respublikasi">
               <el-option
                 v-for="(item, index) in options"
                 :key="index"
@@ -117,12 +117,13 @@
             </div>
           </div>
           <div class="d-flex  justify-content-center mt-5">
-            <div class="start">
+            <div class="start" @click="submitForm">
               <div>
                 <span>Boshlash</span>
                 <p>So‘rovnomada faqat bir marta ishtirok etishingiz mumkin</p>
               </div>
-              <svg class="ml-2" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg class="ml-2" width="32" height="32" viewBox="0 0 32 32" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                       d="M4 15.9998C4 15.2634 4.59696 14.6665 5.33333 14.6665H26C26.7364 14.6665 27.3333 15.2634 27.3333 15.9998C27.3333 16.7362 26.7364 17.3332 26 17.3332H5.33333C4.59696 17.3332 4 16.7362 4 15.9998Z"
                       fill="white" fill-opacity="0.6"/>
@@ -142,9 +143,9 @@
 export default {
   data() {
     return {
-      value: '',
-      input: '',
-      phoneNumber: null,
+      city: null,
+      name: '',
+      phoneNumber: '',
       gender: null,
       options: [
         {
@@ -164,6 +165,11 @@ export default {
           id: 4
         }
       ]
+    }
+  },
+  methods: {
+    submitForm() {
+      this.$emit('submitted', {city: this.city, phone: this.phoneNumber, gender: this.gender, name: this.name})
     }
   }
 }

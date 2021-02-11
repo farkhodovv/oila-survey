@@ -11,7 +11,7 @@
               start speaking the same
               language in order to solve the tasks as quickly and efficiently as possible.</p>
           </div>
-          <div class="d-flex flex-column align-items-center  justify-content-center mt-5">
+          <div class="d-flex flex-column align-items-center  justify-content-center mt-5" @click="$emit('start')">
             <div class="start">
               <div>
                 <span>Boshlash</span>

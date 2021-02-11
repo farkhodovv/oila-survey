@@ -12,24 +12,24 @@
           </div>
           <div class="test-body">
             <div class="multiple d-flex">
-              <el-checkbox class="w-50" label="Sergeli city" border></el-checkbox>
-              <el-checkbox class="w-50" label="Dubay" border></el-checkbox>
+              <el-checkbox class="w-50" v-model="multiAnswer" label="Sergeli city" border></el-checkbox>
+              <el-checkbox class="w-50" v-model="multiAnswer" label="Dubay" border></el-checkbox>
             </div>
             <div class="multiple d-flex">
-              <el-checkbox class="w-50" label="Moskva" border></el-checkbox>
-              <el-checkbox class="w-50" label="Abu Dabi" border></el-checkbox>
+              <el-checkbox class="w-50" v-model="multiAnswer" label="Moskva" border></el-checkbox>
+              <el-checkbox class="w-50" v-model="multiAnswer" label="Abu Dabi" border></el-checkbox>
             </div>
             <div class="multiple d-flex">
-              <el-checkbox class="w-50" label="Chilonzor qirolligi" border></el-checkbox>
-              <el-checkbox class="w-50" label="Sidney" border></el-checkbox>
+              <el-checkbox class="w-50" v-model="multiAnswer" label="Chilonzor qirolligi" border></el-checkbox>
+              <el-checkbox class="w-50" v-model="multiAnswer" label="Sidney" border></el-checkbox>
             </div>
             <div class="multiple d-flex">
-              <el-checkbox class="w-50" label="Nima farqi bor ?" border></el-checkbox>
-              <el-checkbox class="w-50" label="Hech qaysi" border></el-checkbox>
+              <el-checkbox class="w-50" v-model="multiAnswer" label="Nima farqi bor ?" border></el-checkbox>
+              <el-checkbox class="w-50" v-model="multiAnswer" label="Hech qaysi" border></el-checkbox>
             </div>
           </div>
           <div class="test__footer d-flex justify-content-end mt-5">
-            <button class="align-items-center btn-blue">Keyingisi
+            <button class="align-items-center btn-blue" @click="multiDone">Keyingisi
               <svg class="ml-2" width="20" height="20" viewBox="0 0 20 20" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -46,13 +46,21 @@
 
 <script>
 export default {
-  name: 'test'
+  name: 'test',
+  data() {
+    return {
+      multiAnswer: []
+    }
+  },
+  methods: {
+    multiDone() {
+      this.$emit('multiDone', {multiAnswer: this.multiAnswer})
+    }
+  }
 }
 </script>
 <style scoped lang="scss">
 .multiple {
   margin: 20px 0;
-
-
 }
 </style>

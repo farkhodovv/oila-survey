@@ -303,6 +303,34 @@ body {
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1), 0px 8px 30px rgba(0, 0, 0, 0.07);
     border-radius: 8px;
 
+    .el-radio.is-bordered.is-checked {
+      background: #00AEEF;
+      color: #FFFFFF;
+
+      span {
+        color: #fff;
+      }
+    }
+
+    .el-radio.is-bordered {
+      padding: 12px 20px 10px 10px;
+      height: 47px;
+
+
+      &:hover {
+        background: rgba(106, 119, 147, 0.15);
+        border: none;
+
+        span {
+          color: #494C4E;
+        }
+      }
+
+      .el-radio__input {
+        display: none;
+      }
+    }
+
     &__header {
       display: flex;
       align-items: center;
@@ -339,6 +367,8 @@ body {
     }
 
     &__body {
+      margin-top: 30px;
+
       div {
         font-weight: 600;
         font-size: 18px;
