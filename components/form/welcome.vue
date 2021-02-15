@@ -11,7 +11,7 @@
               start speaking the same
               language in order to solve the tasks as quickly and efficiently as possible.</p>
           </div>
-          <div class="d-flex flex-column align-items-center  justify-content-center mt-5" @click="$emit('start')">
+          <nuxt-link :to="localePath('/test')" class="d-flex flex-column align-items-center  justify-content-center mt-5" >
             <div class="start">
               <div>
                 <span>Boshlash</span>
@@ -28,7 +28,7 @@
               </svg>
             </div>
             <nuxt-link to="" tag="span" class="mt-4">Bu so‘rovnomada qatnashib bo‘lganman</nuxt-link>
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>

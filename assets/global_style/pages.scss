@@ -400,3 +400,59 @@ body {
   }
 
 }
+
+body .test .el-radio.is-bordered{
+  white-space: normal;
+}
+
+body .test .el-radio.is-bordered{
+  padding: 0!important;
+  margin: 0 0 20px !important;
+  height: auto !important;
+  &:hover{
+    padding: 0;
+    margin: 0;
+    .el-radio__label{ padding: 10px 12px;}
+  }
+  .el-radio__label{
+    display: block;
+    padding: 10px 12px!important;
+    line-height: 120%;
+    &:hover{
+      padding: 10px 12px;
+    }
+  }
+}
+
+.el-radio__label{
+  padding: 10px 12px!important;
+  line-height: 120%;
+  &:hover{
+    padding: 10px 12px !important;
+  }
+}
+
+body .test .el-radio.is-bordered:hover {
+  background: rgba(106, 119, 147, 0.15);
+  border: 1px solid rgba(106, 119, 147, 0.15);
+}
+
+.test-body .multiple{
+  .el-checkbox{
+    width: 48% !important;
+    display: block;
+    height: auto;
+    margin: 0 0 20px;
+    white-space: normal;
+    &:nth-child(2n){
+      margin-left: 4% !important;
+    }
+  }
+  .el-checkbox.is-bordered+.el-checkbox.is-bordered {
+    margin-left: 0;
+  }
+
+  .el-checkbox.is-bordered{
+    padding: 14px !important;
+  }
+}

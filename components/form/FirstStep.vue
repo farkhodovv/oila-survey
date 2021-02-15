@@ -78,17 +78,19 @@
               Русский язык
             </nuxt-link>
           </div>
+
           <div class="form-group my-3">
             <label class="text-left label-title">To‘liq Familiya Ismingiz va Otangiz ismini kiriting</label>
-            <el-input placeholder="Familiya Ism Otangiz ismi" v-model="name"></el-input>
+            <el-input placeholder="Familiya Ism Otangiz ismi" v-model="form.full_name"></el-input>
           </div>
+
           <div class="form-group d-flex flex-column">
             <label>Hududingiz</label>
-            <el-select v-model="city" placeholder="Qoraqalpog’iston Respublikasi">
+            <el-select v-model="form.region" placeholder="Qoraqalpog’iston Respublikasi">
               <el-option
-                v-for="(item, index) in options"
+                v-for="(item, index) in region"
                 :key="index"
-                :label="item.title"
+                :label="item.name"
                 :value="item.id">
               </el-option>
             </el-select>
@@ -98,26 +100,26 @@
             <div class="d-flex align-items-center">
               <button class="number-input-btn">+998</button>
               <el-input class="number-input" v-mask="'(##) - ### - ## - ##'" placeholder="(__) - ___ - __ - __"
-                        v-model="phoneNumber"></el-input>
+                        v-model="form.phone_number"></el-input>
             </div>
           </div>
           <div class="form-group d-flex flex-column">
             <label>Jinsingiz</label>
             <div class="row">
               <div class="col-md-6">
-                <el-radio class="w-100 d-flex align-items-center justify-content-center" v-model="gender" label="1"
+                <el-radio class="w-100 d-flex align-items-center justify-content-center" v-model="form.gender" label="F"
                           border>Ayol
                 </el-radio>
               </div>
               <div class="col-md-6">
-                <el-radio class="w-100 d-flex align-items-center justify-content-center" v-model="gender" label="2"
+                <el-radio class="w-100 d-flex align-items-center justify-content-center" v-model="form.gender" label="M"
                           border>Erkak
                 </el-radio>
               </div>
             </div>
           </div>
           <div class="d-flex  justify-content-center mt-5">
-            <div class="start" @click="submitForm">
+            <button class="btn start" @click="submitForm" :disabled="!formValid">
               <div>
                 <span>Boshlash</span>
                 <p>So‘rovnomada faqat bir marta ishtirok etishingiz mumkin</p>
@@ -131,8 +133,11 @@
                       d="M17.7239 25.6095C17.2032 25.0888 17.2032 24.2445 17.7239 23.7239L25.4477 16L17.7239 8.27615C17.2032 7.75544 17.2032 6.91123 17.7239 6.39052C18.2445 5.86983 19.0888 5.86983 19.6095 6.39052L27.3333 14.1144C28.3747 15.1557 28.3747 16.8443 27.3333 17.8856L19.6095 25.6095C19.0888 26.1301 18.2445 26.1301 17.7239 25.6095Z"
                       fill="white"/>
               </svg>
-            </div>
+            </button>
           </div>
+
+         <!-- <pre>{{form}}</pre>-->
+
         </div>
       </div>
     </div>
@@ -140,39 +145,75 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      city: null,
-      name: '',
-      phoneNumber: '',
-      gender: null,
-      options: [
-        {
-          title: 'Toshkent',
-          id: 1
+  import {mapState} from 'vuex'
+  export default {
+    props: ['formRaw'],
+    data() {
+      return {
+        form: {
+          full_name: '',
+          region: null,
+          phone_number: '',
+          gender: null,
         },
-        {
-          title: 'Jizzakh',
-          id: 2
-        },
-        {
-          title: 'Navoiy',
-          id: 3
-        },
-        {
-          title: 'Buxoro',
-          id: 4
-        }
-      ]
-    }
-  },
-  methods: {
-    submitForm() {
-      this.$emit('submitted', {city: this.city, phone: this.phoneNumber, gender: this.gender, name: this.name})
-    }
+
+       // formValid: false,
+        /*options: [
+          {
+            title: 'Toshkent',
+            id: 1
+          },
+          {
+            title: 'Jizzakh',
+            id: 2
+          },
+          {
+            title: 'Navoiy',
+            id: 3
+          },
+          {
+            title: 'Buxoro',
+            id: 4
+          }
+        ],*/
+
+
+      }
+    },
+    mounted() {
+      this.form = {...this.form, ...this.formRaw}
+    },
+    methods: {
+      submitForm() {
+        const phone_number = this.$phoneNumber(this.form.phone_number)
+       // console.log(this.form.phone_number)
+
+        this.$axios.post(`account/code-send/`,{phone_number} )
+          .then((res) => {
+
+            this.$emit('form', this.form)
+          })
+          .catch(error => {
+
+            alert(error.response.data)
+          })
+          .finally(()=>{
+          })
+      }
+    },
+    computed: {
+      formValid() {
+        return !!(this.form.full_name && this.form.region && this.form.phone_number && this.form.gender);
+      },
+
+      ...mapState({
+        region: state => state.region,
+      }),
+    },
+    async fetch() {
+      await this.$store.dispatch("fetchRegion");
+    },
   }
-}
 </script>
 
 <style lang="scss" scoped>

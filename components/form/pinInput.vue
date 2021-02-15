@@ -24,7 +24,7 @@
               ref="otpInput"
               input-classes="otp-input"
               separator="-"
-              :num-inputs="4"
+              :num-inputs="6"
               :should-auto-focus="true"
               :is-input-num="true"
               @on-change="handleOnChange"
@@ -32,11 +32,14 @@
             />
           </div>
           <div class="pinInput__button d-flex align-items-center justify-content-center flex-column mt-5">
-            <button @click="verified">
+            <button class="btn" @click="verified" :disabled="!formValid">
               Tasdiqlash
             </button>
             <nuxt-link to="/" tag="span" class="mt-4">Bu so‘rovnomada qatnashib bo‘lganman</nuxt-link>
           </div>
+
+          <pre>{{form}}</pre>
+          <pre>{{formValid}}</pre>
         </div>
       </div>
     </div>
@@ -44,26 +47,71 @@
 </template>
 
 <script>
-import OtpInput from "@bachdgvn/vue-otp-input";
+  import OtpInput from "@bachdgvn/vue-otp-input";
 
-export default {
-  data() {
-    return {
-      codeVerified: true,
-    }
-  },
-  components: {
-    OtpInput
-  },
-  methods: {
-    verified() {
-      this.$emit('verified', {code: this.codeVerified})
+  export default {
+    props: ['formRaw'],
+    data() {
+      return {
+        codeVerified: true,
+        form: {},
+        code: null,
+      }
     },
+    components: {
+      OtpInput,
+    },
+    watch: {
+      code(code) {
+        this.form.code = code
+      }
+    },
+    mounted() {
+      this.form = {...this.form, ...this.formRaw}
+      //this.form.code = null
+    },
+    computed: {
+      formValid() {
+        return !!(this.form.full_name && this.form.region && this.form.phone_number && this.form.gender && this.code);
+      },
+    },
+    methods: {
+      verified() {
+        this.form.phone_number = this.$phoneNumber(this.form.phone_number)
+
+        this.$axios.post(`account/register/`, this.form)
+          .then((res) => {
+            const token = res.data.token
+
+
+            this.$store.dispatch("CREATE_TOKEN",token);
+
+           // this.$store.commit('SET_TOKEN', token)
+            //this.$emit('form', this.form)
+            this.$emit('verified', {code: this.codeVerified})
+          })
+          .catch(error => {
+            // console.log(error.response.data)
+            alert(error.response.data)
+          })
+          .finally(() => {
+          })
+        //this.$emit('verified', {code: this.codeVerified})
+      },
+
+      handleOnComplete(value) {
+
+        this.code = value
+
+      },
+      handleOnChange(value) {
+        //  console.log('OTP changed: ', value);
+      },
+    }
   }
-}
 </script>
 <style lang="scss" scoped>
-.icon {
-  cursor: pointer;
-}
+  .icon {
+    cursor: pointer;
+  }
 </style>

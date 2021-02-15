@@ -29,6 +29,7 @@ export default {
   plugins: [
     {src: '@/plugins/element-ui.js', mode: 'client'},
     {src: '@/plugins/v-mask.js', mode: 'client'},
+    {src: '@/plugins/custom-function.js', mode: 'client'},
   ],
 
 
@@ -61,9 +62,13 @@ export default {
         langDir: 'lang/',
       }
     ],
-
+    "@nuxtjs/axios"
   ],
-
+  axios: {
+    baseURL: "http://192.168.10.185:8001/api/v1/"
+   // baseURL: "http://192.168.10.204:8001/api/v1/"
+   // baseURL: 'http://192.168.10.13:8088/api/v1/',
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

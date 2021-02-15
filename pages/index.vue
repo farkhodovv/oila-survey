@@ -1,12 +1,12 @@
 <template>
   <div>
-    <FirstStep v-if="step ===1" @submitted="formReady"/>
-    <pinInput v-if="step === 2" @verified="Verified" @stepBack="stepBack"/>
+    <FirstStep v-if="step ===1" :form-raw="form" @form="formReady"/>
+    <pinInput v-if="step === 2" :form-raw="form" @verified="Verified" @stepBack="stepBack"/>
     <welcome v-if="step === 3" @start="start"/>
-    <test v-if="step ===4" @testDone="testDone"/>
+   <!-- <test v-if="step ===4" @testDone="testDone"/>
     <multiple v-if="step ===5" @multiDone="multiDone"/>
     <textArea v-if="step ===6 "/>
-    <stars v-if="step ===7"/>
+    <stars v-if="step ===7"/>-->
   </div>
 </template>
 
@@ -35,11 +35,11 @@ export default {
       this.step = 1
     },
     formReady(data) {
-      this.form = {...data, ...this.form};
+      this.form = data;
       this.step = 2;
     },
     Verified(data) {
-      this.form = {...data, ...this.form};
+      this.form = data;
       this.step = 3;
     },
     start() {
